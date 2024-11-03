@@ -15,6 +15,7 @@ import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.utils.Aware_Plugin;
 import com.aware.utils.Http;
+import com.aware.utils.PluginsManager;
 import com.aware.utils.Scheduler;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -274,6 +275,7 @@ public class Plugin extends Aware_Plugin implements GoogleApiClient.ConnectionCa
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
 
         ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), false);
         ContentResolver.removePeriodicSync(
@@ -282,16 +284,21 @@ public class Plugin extends Aware_Plugin implements GoogleApiClient.ConnectionCa
                 Bundle.EMPTY
         );
 
-        Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_OPENWEATHER, false);
-
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, pIntent);
             mGoogleApiClient.disconnect();
         }
+        Scheduler.removeSchedule(this, SCHEDULER_PLUGIN_OPENWEATHER);
 
-        Aware.stopPlugin(getApplicationContext(), getPackageName());
+        Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_OPENWEATHER, false);
 
-        super.onDestroy();
+        String packageName = getPackageName();
+        PluginsManager.disablePlugin(getApplicationContext(), packageName);
+        
+        if (getPackageName().equals("com.aware.phone") ||
+                getResources().getBoolean(R.bool.standalone)) {
+            sendBroadcast(new Intent(Aware.ACTION_AWARE_UPDATE_PLUGINS_INFO));
+        }
     }
 
     private boolean is_google_services_available() {

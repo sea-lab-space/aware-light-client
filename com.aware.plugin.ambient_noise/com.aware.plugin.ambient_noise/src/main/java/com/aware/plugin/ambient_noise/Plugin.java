@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.utils.Aware_Plugin;
+import com.aware.utils.PluginsManager;
 import com.aware.utils.Scheduler;
 
 import org.json.JSONException;
@@ -88,6 +89,7 @@ public class Plugin extends Aware_Plugin {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
 
         ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), false);
         ContentResolver.removePeriodicSync(
@@ -96,13 +98,17 @@ public class Plugin extends Aware_Plugin {
                 Bundle.EMPTY
         );
 
-        Scheduler.removeSchedule(getApplicationContext(), SCHEDULER_PLUGIN_AMBIENT_NOISE);
+        Scheduler.removeSchedule(this, SCHEDULER_PLUGIN_AMBIENT_NOISE);
 
         Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_AMBIENT_NOISE, false);
 
-        Aware.stopPlugin(getApplicationContext(), getPackageName());
+        String packageName = getPackageName();
+        PluginsManager.disablePlugin(getApplicationContext(), packageName);
 
-        super.onDestroy();
+        if (getPackageName().equals("com.aware.phone") ||
+                getResources().getBoolean(R.bool.standalone)) {
+            sendBroadcast(new Intent(Aware.ACTION_AWARE_UPDATE_PLUGINS_INFO));
+        }
     }
 
     private static AWARESensorObserver awareSensor;
