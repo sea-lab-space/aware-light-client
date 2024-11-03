@@ -1,6 +1,0 @@
-[submodule "com.aware.plugin.ambient_noise"]
-	path = com.aware.plugin.ambient_noise
-	url = https://github.com/denzilferreira/com.aware.plugin.ambient_noise.git
-[submodule "com.aware.plugin.openweather"]
-	path = com.aware.plugin.openweather
-	url = https://github.com/denzilferreira/com.aware.plugin.openweather.git

@@ -786,6 +786,21 @@
 
         </PreferenceScreen>
     </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/aware_plugins"
+        android:title="Plugin">
+        <Preference
+            android:key="plugins_manager"
+            android:persistent="false"
+            android:title="Plugins Manager"
+            android:summary="Configure AWARE plugins" />
+
+        <Preference
+            android:key="stream_ui"
+            android:persistent="false"
+            android:title="Stream UI"
+            android:summary="View data stream" />
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="study_actions"

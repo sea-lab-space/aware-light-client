@@ -114,8 +114,8 @@ public class Aware_Light_Client extends Aware_Activity {
             setContentView(R.layout.activity_aware_study);
             addPreferencesFromResource(R.xml.pref_aware_light);
 
-            // Initialize bottom navigation
-            setupBottomNavigation();
+            // Initialize plugin navigation
+            setupPluginNavigation();
         } else {
             setContentView(R.layout.activity_aware_light);
             addPreferencesFromResource(R.xml.pref_aware_device);
@@ -185,34 +185,32 @@ public class Aware_Light_Client extends Aware_Activity {
             startActivity(whitelisting);
         }
 
-        Log.d("AWARE::Screenshot","Print " + Aware.getSetting(getApplicationContext(),Aware_Preferences.STATUS_SCREENSHOT));
-
         // Register the broadcast receiver
         registerReceiver(screenshotServiceStoppedReceiver, new IntentFilter(ScreenShot.ACTION_SCREENSHOT_SERVICE_STOPPED));
         registerReceiver(screenshotStatusReceiver, new IntentFilter(ScreenShot.ACTION_SCREENSHOT_STATUS));
         checkAndStartScreenshotService();
     }
 
-    private void setupBottomNavigation() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.aware_bottombar);
-        if (bottomNavigationView != null) {
-            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private void setupPluginNavigation() {
+        Preference pluginsManagerPref = findPreference("plugins_manager");
+        if (pluginsManagerPref != null) {
+            pluginsManagerPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.aware_sensors: //Sensors
-                            Intent sensors_ui = new Intent(getApplicationContext(), Aware_Light_Client.class);
-                            startActivity(sensors_ui);
-                            break;
-                        case R.id.aware_plugins: //Plugins
-                            Intent pluginsManager = new Intent(getApplicationContext(), Plugins_Manager.class);
-                            startActivity(pluginsManager);
-                            break;
-                        case R.id.aware_stream: //Stream
-                            Intent stream_ui = new Intent(getApplicationContext(), Stream_UI.class);
-                            startActivity(stream_ui);
-                            break;
-                    }
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent pluginsManager = new Intent(getApplicationContext(), Plugins_Manager.class);
+                    startActivity(pluginsManager);
+                    return true;
+                }
+            });
+        }
+
+        Preference streamUiPref = findPreference("stream_ui");
+        if (streamUiPref != null) {
+            streamUiPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Intent stream_ui = new Intent(getApplicationContext(), Stream_UI.class);
+                    startActivity(stream_ui);
                     return true;
                 }
             });
@@ -833,7 +831,8 @@ public class Aware_Light_Client extends Aware_Activity {
                     findPreference(Aware_Preferences.WEBSERVICE_REMOVE_DATA),
                     findPreference(Aware_Preferences.DEBUG_DB_SLOW),
                     findPreference(Aware_Preferences.FOREGROUND_PRIORITY),
-                    findPreference(Aware_Preferences.STATUS_TOUCH)
+                    findPreference(Aware_Preferences.STATUS_TOUCH),
+                    findPreference(Aware_Preferences.STATUS_SCREENSHOT)
             );
         }
     }

@@ -154,9 +154,9 @@ public class ScreenshotCaptureService extends Service {
         Notification notification = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
                 .setContentTitle("Screen Capture")
                 .setContentText("Capturing screen every 5 seconds...")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_capture)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .addAction(R.drawable.ic_launcher_foreground, "Stop Capture", pStopSelf)
+                .addAction(R.drawable.ic_capture, "Stop Capture", pStopSelf)
                 .build();
 
         startForeground(NOTIFICATION_ID, notification);
