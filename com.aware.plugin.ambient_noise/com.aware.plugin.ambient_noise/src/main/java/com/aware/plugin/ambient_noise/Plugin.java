@@ -88,7 +88,6 @@ public class Plugin extends Aware_Plugin {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
 
         ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), false);
         ContentResolver.removePeriodicSync(
@@ -97,8 +96,13 @@ public class Plugin extends Aware_Plugin {
                 Bundle.EMPTY
         );
 
-        Scheduler.removeSchedule(this, SCHEDULER_PLUGIN_AMBIENT_NOISE);
+        Scheduler.removeSchedule(getApplicationContext(), SCHEDULER_PLUGIN_AMBIENT_NOISE);
+
         Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_AMBIENT_NOISE, false);
+
+        Aware.stopPlugin(getApplicationContext(), getPackageName());
+
+        super.onDestroy();
     }
 
     private static AWARESensorObserver awareSensor;

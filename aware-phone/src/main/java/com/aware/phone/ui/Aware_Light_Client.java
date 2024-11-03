@@ -156,16 +156,16 @@ public class Aware_Light_Client extends Aware_Activity {
         REQUIRED_PERMISSIONS.add(Manifest.permission.READ_SYNC_SETTINGS);
         REQUIRED_PERMISSIONS.add(Manifest.permission.READ_SYNC_STATS);
         REQUIRED_PERMISSIONS.add(Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+        REQUIRED_PERMISSIONS.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        REQUIRED_PERMISSIONS.add(Manifest.permission.READ_EXTERNAL_STORAGE);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) REQUIRED_PERMISSIONS.add(Manifest.permission.FOREGROUND_SERVICE);
 
         boolean PERMISSIONS_OK = true;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for (String p : REQUIRED_PERMISSIONS) {
-                if (PermissionChecker.checkSelfPermission(this, p) != PermissionChecker.PERMISSION_GRANTED) {
-                    PERMISSIONS_OK = false;
-                    break;
-                }
+        for (String p : REQUIRED_PERMISSIONS) {
+            if (PermissionChecker.checkSelfPermission(this, p) != PermissionChecker.PERMISSION_GRANTED) {
+                PERMISSIONS_OK = false;
+                break;
             }
         }
         if (PERMISSIONS_OK) {
@@ -179,11 +179,9 @@ public class Aware_Light_Client extends Aware_Activity {
         awarePackages.addDataScheme("package");
         registerReceiver(packageMonitor, awarePackages);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            Intent whitelisting = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-            whitelisting.setData(Uri.parse("package:" + getPackageName()));
-            startActivity(whitelisting);
-        }
+        Intent whitelisting = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+        whitelisting.setData(Uri.parse("package:" + getPackageName()));
+        startActivity(whitelisting);
 
         // Register the broadcast receiver
         registerReceiver(screenshotServiceStoppedReceiver, new IntentFilter(ScreenShot.ACTION_SCREENSHOT_SERVICE_STOPPED));

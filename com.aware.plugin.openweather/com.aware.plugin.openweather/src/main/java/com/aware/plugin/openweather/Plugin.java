@@ -274,7 +274,6 @@ public class Plugin extends Aware_Plugin implements GoogleApiClient.ConnectionCa
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
 
         ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), false);
         ContentResolver.removePeriodicSync(
@@ -283,12 +282,16 @@ public class Plugin extends Aware_Plugin implements GoogleApiClient.ConnectionCa
                 Bundle.EMPTY
         );
 
-        Aware.setSetting(this, Settings.STATUS_PLUGIN_OPENWEATHER, false);
+        Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_OPENWEATHER, false);
 
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, pIntent);
             mGoogleApiClient.disconnect();
         }
+
+        Aware.stopPlugin(getApplicationContext(), getPackageName());
+
+        super.onDestroy();
     }
 
     private boolean is_google_services_available() {
