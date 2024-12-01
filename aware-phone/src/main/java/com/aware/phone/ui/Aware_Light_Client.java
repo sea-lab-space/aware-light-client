@@ -831,6 +831,7 @@ public class Aware_Light_Client extends Aware_Activity {
                     findPreference(Aware_Preferences.FOREGROUND_PRIORITY),
                     findPreference(Aware_Preferences.STATUS_TOUCH),
                     findPreference(Aware_Preferences.STATUS_SCREENSHOT)
+
             );
         }
     }

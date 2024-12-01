@@ -82,14 +82,6 @@ public class AudioAnalyser extends IntentService {
 
             Log.d("AWARE::Ambient Noise", "Realtime: " + data.toString());
 
-            if (!Aware.getSetting(getApplicationContext(), Settings.PLUGIN_AMBIENT_NOISE_NO_RAW).equals("true")) {
-                short[] audio_data = new short[buffer_size];
-                ByteBuffer byteBuff = ByteBuffer.allocate(2 * buffer_size);
-
-                for (Short a : audio_data) byteBuff.putShort(a);
-                data.put(Provider.AmbientNoise_Data.RAW, byteBuff.array());
-            }
-
             data.put(Provider.AmbientNoise_Data.SILENCE_THRESHOLD, Aware.getSetting(getApplicationContext(), Settings.PLUGIN_AMBIENT_NOISE_SILENCE_THRESHOLD));
             getContentResolver().insert(Provider.AmbientNoise_Data.CONTENT_URI, data);
 

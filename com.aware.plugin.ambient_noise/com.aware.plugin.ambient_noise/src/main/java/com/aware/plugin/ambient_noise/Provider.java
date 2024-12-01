@@ -1,5 +1,6 @@
 package com.aware.plugin.ambient_noise;
 
+import android.annotation.SuppressLint;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -17,6 +18,7 @@ import com.aware.Aware;
 import com.aware.utils.DatabaseHelper;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Provider extends ContentProvider {
 	
@@ -44,10 +46,9 @@ public class Provider extends ContentProvider {
 		AmbientNoise_Data.DECIBELS + " real default 0," +
 		AmbientNoise_Data.RMS + " real default 0," +
 		AmbientNoise_Data.IS_SILENT + " integer default 0," +
-		AmbientNoise_Data.SILENCE_THRESHOLD + " real default 0," +
-        AmbientNoise_Data.RAW + " blob default null"
+		AmbientNoise_Data.SILENCE_THRESHOLD + " real default 0"
 	};
-	
+
 	public static final class AmbientNoise_Data implements BaseColumns {
 		private AmbientNoise_Data(){};
 		
@@ -62,7 +63,6 @@ public class Provider extends ContentProvider {
 		public static final String DECIBELS = "double_decibels";
 		public static final String RMS = "double_rms";
 		public static final String IS_SILENT = "is_silent";
-        public static final String RAW = "blob_raw";
 		public static final String SILENCE_THRESHOLD = "double_silence_threshold";
 	}
 	
@@ -78,9 +78,10 @@ public class Provider extends ContentProvider {
 		return AUTHORITY;
 	}
 	
-	@Override
+	@SuppressLint("SuspiciousIndentation")
+    @Override
 	public boolean onCreate() {
-		AUTHORITY = getContext().getPackageName() + ".provider.ambient_noise";
+		AUTHORITY = Objects.requireNonNull(getContext()).getPackageName() + ".provider.ambient_noise";
 		
 		URIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 		URIMatcher.addURI(AUTHORITY, DATABASE_TABLES[0], AMBIENT_NOISE);
@@ -94,7 +95,6 @@ public class Provider extends ContentProvider {
 		databaseMap.put(AmbientNoise_Data.DECIBELS, AmbientNoise_Data.DECIBELS);
 		databaseMap.put(AmbientNoise_Data.RMS, AmbientNoise_Data.RMS);
 		databaseMap.put(AmbientNoise_Data.IS_SILENT, AmbientNoise_Data.IS_SILENT);
-        databaseMap.put(AmbientNoise_Data.RAW, AmbientNoise_Data.RAW);
 		databaseMap.put(AmbientNoise_Data.SILENCE_THRESHOLD, AmbientNoise_Data.SILENCE_THRESHOLD);
 		
 		return true;
@@ -117,13 +117,11 @@ public class Provider extends ContentProvider {
 		database.beginTransaction();
 
         int count;
-        switch (URIMatcher.match(uri)) {
-            case AMBIENT_NOISE:
-                count = database.delete(DATABASE_TABLES[0], selection, selectionArgs);
-                break;
-            default:
-				database.endTransaction();
-                throw new IllegalArgumentException("Unknown URI " + uri);
+        if (URIMatcher.match(uri) == AMBIENT_NOISE) {
+            count = database.delete(DATABASE_TABLES[0], selection, selectionArgs);
+        } else {
+            database.endTransaction();
+            throw new IllegalArgumentException("Unknown URI " + uri);
         }
 
 		database.setTransactionSuccessful();
@@ -162,7 +160,7 @@ public class Provider extends ContentProvider {
                     Uri new_uri = ContentUris.withAppendedId(
                             AmbientNoise_Data.CONTENT_URI,
                             weather_id);
-                    getContext().getContentResolver().notifyChange(new_uri, null, false);
+                    Objects.requireNonNull(getContext()).getContentResolver().notifyChange(new_uri, null, false);
 					database.setTransactionSuccessful();
 					database.endTransaction();
                     return new_uri;
@@ -192,7 +190,7 @@ public class Provider extends ContentProvider {
         try {
             Cursor c = qb.query(database, projection, selection, selectionArgs,
                     null, null, sortOrder);
-            c.setNotificationUri(getContext().getContentResolver(), uri);
+            c.setNotificationUri(Objects.requireNonNull(getContext()).getContentResolver(), uri);
             return c;
         } catch (IllegalStateException e) {
             if (Aware.DEBUG)

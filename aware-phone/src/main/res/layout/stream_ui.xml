@@ -38,10 +38,6 @@
 
     </RelativeLayout>
 
-    <include
-        android:id="@+id/aware_bottombar"
-        layout="@layout/aware_controller" />
-
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
