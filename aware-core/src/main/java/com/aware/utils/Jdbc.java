@@ -68,7 +68,7 @@ public class Jdbc {
      * @param password db password
      * @return true if a connection was established, false otherwise.
      */
-    public static boolean testConnection(String host, String port, String name, String username, String password, Boolean config_without_password, String input_password) {
+    public static boolean  testConnection(String host, String port, String name, String username, String password, Boolean config_without_password, String input_password) {
         String connectionUrl = String.format("jdbc:mysql://%s:%s/%s", host, port, name);
         Log.i(TAG, "Establishing connection to remote database...");
 

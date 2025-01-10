@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.ambient_noise" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.contacts_list" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.device_usage" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.esm.scheduler" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.fitbit" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.google.activity_recognition" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.google.auth" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.google.fused_location" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.openweather" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.sensortag" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.sentimental" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final" vcs="Git" />
+  </component>
+</project>

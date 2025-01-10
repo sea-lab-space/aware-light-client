@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="CHOOSE_PER_TEST" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/aware-core" />
+            <option value="$PROJECT_DIR$/aware-phone" />
+            <option value="$PROJECT_DIR$/aware-tests" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.device_usage/com.aware.plugin.device_usage.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.esm.scheduler/com.aware.plugin.esm.scheduler.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.fitbit/com.aware.plugin.fitbit.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.google.activity_recognition/com.aware.plugin.google.activity_recognition.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.google.auth/com.aware.plugin.google.auth.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.google.fused_location/com.aware.plugin.google.fused_location.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.openweather/com.aware.plugin.openweather.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.sensortag/com.aware.plugin.sensortag.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.sentimental/com.aware.plugin.sentimental.lib" />
+            <option value="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio.lib" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
