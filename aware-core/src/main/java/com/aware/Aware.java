@@ -2480,6 +2480,11 @@ public class Aware extends Service {
             startLocations(context);
         } else stopLocations(context);
 
+//        if(Aware.getSetting(context, Aware_Preferences.STATUS_HEALTH_CONNECT).equals("true")) {
+//            startHealthConnect(context);
+//        } else stophealthConnect(context);
+
+
         if (Aware.getSetting(context, Aware_Preferences.STATUS_BLUETOOTH).equals("true")) {
             startBluetooth(context);
         } else stopBluetooth(context);
@@ -3063,6 +3068,16 @@ public class Aware extends Service {
             if (locationsSrv != null) context.stopService(locationsSrv);
         }
     }
+
+//    /**
+//     * Start the health connect module
+//     */
+//    public static void startHealthConnect(Context context) {
+//        if (context == null) return;
+//        if (healthConnectSrv == null) healthConnectSrv = new Intent(context, HealthConnectService.class);
+//        context.startService(healthConnectSrv);
+//    }
+
 
     /**
      * Start the bluetooth module

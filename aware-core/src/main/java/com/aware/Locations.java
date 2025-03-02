@@ -5,6 +5,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SyncRequest;
+import android.content.pm.PackageManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteException;
 import android.location.GpsStatus;
@@ -14,6 +15,9 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.aware.providers.Locations_Provider;
 import com.aware.providers.Locations_Provider.Locations_Data;
@@ -323,6 +327,39 @@ public class Locations extends Aware_Sensor implements LocationListener {
             if (Aware.getSetting(getApplicationContext(), Aware_Preferences.STATUS_LOCATION_GPS).equals("true")) {
                 if (locationManager.getProvider(LocationManager.GPS_PROVIDER) != null) {
                     if (FREQUENCY_GPS != Integer.parseInt(Aware.getSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_LOCATION_GPS))) {
+                        if (locationManager.getProvider(LocationManager.GPS_PROVIDER) == null) {
+                            Log.d(TAG, "[GPS Debug] device does not support GPS");
+                        } else {
+                            Log.d(TAG, "[GPS Debug] device supports GPS");
+                        }
+                        PackageManager pm = getPackageManager();
+                        if (pm.hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS)) {
+                            Log.d(TAG, "[GPS Debug] device supports GPS");
+                        } else {
+                            Log.d(TAG, "[GPS Debug] device does not support GPS");
+                        }
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            Log.d(TAG, "[GPS Debug] Fine Location Permission: GRANTED");
+                        } else {
+                            Log.d(TAG, "[GPS Debug] Fine Location Permission: DENIED");
+                        }
+
+                        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            Log.d(TAG, "[GPS Debug] Coarse Location Permission: GRANTED");
+                        } else {
+                            Log.d(TAG, "[GPS Debug] Coarse Location Permission: DENIED");
+                        }
+
+                        boolean isGpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+                        Log.d(TAG, "[GPS Debug] GPS current status: " + isGpsEnabled);
+
+
+                        int gpsFrequency = Integer.parseInt(Aware.getSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_LOCATION_GPS)) * 1000;
+                        int gpsMinAccuracy = Integer.parseInt(Aware.getSetting(getApplicationContext(), Aware_Preferences.MIN_LOCATION_GPS_ACCURACY));
+
+                        Log.d(TAG, "[GPS Debug] GPS Frequency: " + gpsFrequency + " ms");
+                        Log.d(TAG, "[GPS Debug] GPS Min Accuracy: " + gpsMinAccuracy + " meters");
+
                         locationManager.requestLocationUpdates(
                                 LocationManager.GPS_PROVIDER,
                                 Integer.parseInt(Aware.getSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_LOCATION_GPS)) * 1000,
@@ -442,6 +479,7 @@ public class Locations extends Aware_Sensor implements LocationListener {
 
         //If we have both GPS and Network active, check if we got a better location. Otherwise always keep the latest.
         if (Aware.getSetting(getApplicationContext(), Aware_Preferences.STATUS_LOCATION_GPS).equals("true") && Aware.getSetting(getApplicationContext(), Aware_Preferences.STATUS_LOCATION_NETWORK).equals("true")) {
+            //
             Location lastGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             Location lastNetwork = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if (isBetterLocation(lastNetwork, lastGPS)) {
