@@ -15,10 +15,13 @@ import com.aware.Aware
 import com.aware.Aware_Preferences
 import com.aware.phone.R
 import com.aware.ui.PermissionsHandler
-import kotlinx.android.synthetic.main.aware_ui_participant.*
+//import kotlinx.android.synthetic.main.aware_ui_participant.*
+import com.aware.phone.databinding.AwareUiParticipantBinding
 import java.util.ArrayList
 
 class Aware_Participant : AppCompatActivity() {
+
+    private lateinit var binding: AwareUiParticipantBinding
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
@@ -29,14 +32,19 @@ class Aware_Participant : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.aware_ui_participant)
+//        setContentView(R.layout.aware_ui_participant)
+        binding = AwareUiParticipantBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onResume() {
         super.onResume()
-        device_id.text = Aware.getSetting(this, Aware_Preferences.DEVICE_ID)
-        device_name.text = Aware.getSetting(this, Aware_Preferences.DEVICE_LABEL)
-        study_url.text = Aware.getSetting(this, Aware_Preferences.WEBSERVICE_SERVER)
+//        device_id.text = Aware.getSetting(this, Aware_Preferences.DEVICE_ID)
+//        device_name.text = Aware.getSetting(this, Aware_Preferences.DEVICE_LABEL)
+//        study_url.text = Aware.getSetting(this, Aware_Preferences.WEBSERVICE_SERVER)
+        binding.deviceId.text = Aware.getSetting(this, Aware_Preferences.DEVICE_ID)
+        binding.deviceName.text = Aware.getSetting(this, Aware_Preferences.DEVICE_LABEL)
+        binding.studyUrl.text = Aware.getSetting(this, Aware_Preferences.WEBSERVICE_SERVER)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

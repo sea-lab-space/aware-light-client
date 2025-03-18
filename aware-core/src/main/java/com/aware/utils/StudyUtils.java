@@ -532,7 +532,7 @@ public class StudyUtils extends IntentService {
                 Intent intent = new Intent()
                         .setComponent(new ComponentName("com.aware.phone", "com.aware.phone.ui.Aware_Light_Client"))
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                PendingIntent clickIntent = PendingIntent.getActivity(context, 0, intent, 0);
+                PendingIntent clickIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(context, Aware.AWARE_NOTIFICATION_CHANNEL_GENERAL)
                         .setChannelId(Aware.AWARE_NOTIFICATION_CHANNEL_GENERAL)

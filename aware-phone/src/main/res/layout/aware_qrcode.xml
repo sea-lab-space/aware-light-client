@@ -5,17 +5,17 @@
     android:background="#000"
     android:orientation="vertical">
 
-    <com.aware.phone.ui.qrcode.CameraSourcePreview
-        android:id="@+id/preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+<!--    <com.aware.phone.ui.qrcode.CameraSourcePreview-->
+<!--        android:id="@+id/preview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1">-->
 
-        <com.aware.phone.ui.qrcode.GraphicOverlay
-            android:id="@+id/overlay"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </com.aware.phone.ui.qrcode.CameraSourcePreview>
+<!--        <com.aware.phone.ui.qrcode.GraphicOverlay-->
+<!--            android:id="@+id/overlay"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent" />-->
+<!--    </com.aware.phone.ui.qrcode.CameraSourcePreview>-->
 
     <include
         android:id="@+id/aware_bottombar"

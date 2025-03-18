@@ -60,7 +60,7 @@
                 android:padding="0dp" />
 
             <LinearLayout
-                android:id="@+id/LinearLayout1"
+                android:id="@+id/LinearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

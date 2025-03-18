@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aware">
+<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    package="com.aware">-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="com.aware.READ_CONTEXT_DATA" />
     <uses-permission android:name="com.aware.WRITE_CONTEXT_DATA" />
@@ -43,7 +46,8 @@
             android:theme="@style/Theme.AppCompat.Translucent" />
 
         <!-- AWARE account service -->
-        <service android:name="com.aware.utils.Aware_Accounts">
+        <service android:name="com.aware.utils.Aware_Accounts"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>

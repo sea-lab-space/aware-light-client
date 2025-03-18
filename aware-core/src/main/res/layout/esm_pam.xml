@@ -35,7 +35,7 @@
                 android:maxLines="@integer/maxlines_esm_instructions"
                 android:padding="10dp" />
 
-            <android.support.v7.widget.GridLayout
+            <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/esm_pam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -221,10 +221,10 @@
                     android:padding="2dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/square" />
-            </android.support.v7.widget.GridLayout>
+            </androidx.gridlayout.widget.GridLayout>
 
             <LinearLayout
-                android:id="@+id/LinearLayout1"
+                android:id="@+id/LinearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/esm_pam"

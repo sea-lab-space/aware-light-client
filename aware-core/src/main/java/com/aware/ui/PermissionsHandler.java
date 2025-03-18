@@ -56,6 +56,7 @@ public class PermissionsHandler extends Activity {
     protected void onResume() {
         super.onResume();
         if (getIntent() != null && getIntent().getExtras() != null && getIntent().getSerializableExtra(EXTRA_REQUIRED_PERMISSIONS) != null) {
+            @SuppressWarnings("unchecked")
             ArrayList<String> permissionsNeeded = (ArrayList<String>) getIntent().getSerializableExtra(EXTRA_REQUIRED_PERMISSIONS);
             ActivityCompat.requestPermissions(PermissionsHandler.this, permissionsNeeded.toArray(new String[permissionsNeeded.size()]), RC_PERMISSIONS);
             if (getIntent().hasExtra(EXTRA_REDIRECT_ACTIVITY)) {

@@ -53,7 +53,7 @@
                 android:layout_marginRight="10dp" />
 
             <LinearLayout
-                android:id="@+id/LinearLayout1"
+                android:id="@+id/LinearLayout2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/esm_scale"
@@ -84,7 +84,7 @@
                 android:id="@+id/esm_buttons_controls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/LinearLayout1"
+                android:layout_below="@+id/LinearLayout2"
                 android:layout_alignParentBottom="true"
                 android:paddingBottom="10dp"
                 android:paddingLeft="10dp"

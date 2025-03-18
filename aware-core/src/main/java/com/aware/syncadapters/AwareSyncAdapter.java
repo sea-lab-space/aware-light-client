@@ -289,7 +289,7 @@ public class AwareSyncAdapter extends AbstractThreadedSyncAdapter {
 
             mBuilder = Aware.setNotificationProperties(mBuilder, Aware.AWARE_NOTIFICATION_IMPORTANCE_DATASYNC);
 
-            PendingIntent clickIntent = PendingIntent.getActivity(mContext, 0, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent clickIntent = PendingIntent.getActivity(mContext, 0, new Intent(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE );
             mBuilder.setContentIntent(clickIntent);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -329,7 +329,7 @@ public class AwareSyncAdapter extends AbstractThreadedSyncAdapter {
             Intent intent = new Intent("com.android.systemui.recent.action.TOGGLE_RECENTS");
             intent.setComponent(new ComponentName("com.android.systemui", "com.android.systemui.recent.RecentsActivity"));
 
-            PendingIntent clickIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent clickIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE );
             mBuilder.setContentIntent(clickIntent);
 
             NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
