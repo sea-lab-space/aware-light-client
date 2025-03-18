@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aware.phone.R;
+//import com.aware.phone.R;
 import com.aware.phone.ui.dialogs.QuitStudyDialog;
 
 public class QuitStudyPref extends Preference {
@@ -33,9 +33,9 @@ public class QuitStudyPref extends Preference {
     protected View onCreateView(ViewGroup parent) {
         super.onCreateView(parent);
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.btn_quit_study, parent, false);
+        View view = inflater.inflate(com.aware.R.layout.btn_quit_study, parent, false);
 
-        view.findViewById(R.id.btn_quit_study).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(com.aware.R.id.btn_quit_study).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new QuitStudyDialog((Activity) getContext()).showDialog();

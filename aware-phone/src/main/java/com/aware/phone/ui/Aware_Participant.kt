@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.PermissionChecker
 import com.aware.Aware
 import com.aware.Aware_Preferences
-import com.aware.phone.R
+//import com.aware.phone.R
 import com.aware.ui.PermissionsHandler
 //import kotlinx.android.synthetic.main.aware_ui_participant.*
 import com.aware.phone.databinding.AwareUiParticipantBinding
@@ -48,19 +48,19 @@ class Aware_Participant : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.aware_menu, menu)
+        menuInflater.inflate(com.aware.phone.R.menu.aware_menu, menu)
         for (i in 0 until menu.size()) {
             val item = menu.getItem(i)
-            if (item.title.toString().equals(resources.getString(R.string.aware_qrcode), ignoreCase = true)) item.isVisible = false
+            if (item.title.toString().equals(resources.getString(com.aware.R.string.aware_qrcode), ignoreCase = true)) item.isVisible = false
 //            if (item.title.toString().equals(resources.getString(R.string.aware_team), ignoreCase = true)) item.isVisible = false
-            if (item.title.toString().equals(resources.getString(R.string.aware_study), ignoreCase = true)) item.isVisible = true
-            if (item.title.toString().equals(resources.getString(R.string.aware_sync), ignoreCase = true)) item.isVisible = true
+            if (item.title.toString().equals(resources.getString(com.aware.R.string.aware_study), ignoreCase = true)) item.isVisible = true
+            if (item.title.toString().equals(resources.getString(com.aware.R.string.aware_sync), ignoreCase = true)) item.isVisible = true
         }
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.title.toString().equals(resources.getString(R.string.aware_qrcode), ignoreCase = true)) {
+        if (item.title.toString().equals(resources.getString(com.aware.R.string.aware_qrcode), ignoreCase = true)) {
             if (PermissionChecker.checkSelfPermission(this, Manifest.permission.CAMERA) != PermissionChecker.PERMISSION_GRANTED) {
                 val permission = ArrayList<String>()
                 permission.add(Manifest.permission.CAMERA)
@@ -76,7 +76,7 @@ class Aware_Participant : AppCompatActivity() {
                 startActivity(qrcode)
             }
         }
-        if (item.title.toString().equals(resources.getString(R.string.aware_study), ignoreCase = true)) {
+        if (item.title.toString().equals(resources.getString(com.aware.R.string.aware_study), ignoreCase = true)) {
             val studyInfo = Intent(this@Aware_Participant, Aware_Join_Study::class.java)
             studyInfo.putExtra(Aware_Join_Study.EXTRA_STUDY_URL, Aware.getSetting(this, Aware_Preferences.WEBSERVICE_SERVER))
             startActivity(studyInfo)
@@ -85,7 +85,7 @@ class Aware_Participant : AppCompatActivity() {
 //            val about_us = Intent(this@Aware_Participant, About::class.java)
 //            startActivity(about_us)
 //        }
-        if (item.title.toString().equals(resources.getString(R.string.aware_sync), ignoreCase = true)) {
+        if (item.title.toString().equals(resources.getString(com.aware.R.string.aware_sync), ignoreCase = true)) {
             Toast.makeText(applicationContext, "Syncing data...", Toast.LENGTH_SHORT).show()
             val sync = Intent(Aware.ACTION_AWARE_SYNC_DATA)
             sendBroadcast(sync)

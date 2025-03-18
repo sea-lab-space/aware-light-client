@@ -13,7 +13,7 @@ import androidx.core.content.PermissionChecker;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.phone.Aware_Client;
-import com.aware.phone.R;
+import com.aware.R;
 import com.aware.phone.ui.dialogs.JoinStudyDialog;
 import com.aware.ui.PermissionsHandler;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,24 +31,21 @@ public abstract class Aware_Activity extends AppCompatPreferenceActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(false);
         }
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.aware_bottombar);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(com.aware.phone.R.id.aware_bottombar);
         if (bottomNavigationView != null) {
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-                        case R.id.aware_sensors: //Sensors
+                    int id = item.getItemId();
+                    if (id == com.aware.phone.R.id.aware_sensors) {
                             Intent sensors_ui = new Intent(getApplicationContext(), Aware_Light_Client.class);
                             startActivity(sensors_ui);
-                            break;
-                        case R.id.aware_plugins: //Plugins
+                    } else if (id == com.aware.phone.R.id.aware_plugins) {
                             Intent pluginsManager = new Intent(getApplicationContext(), Plugins_Manager.class);
                             startActivity(pluginsManager);
-                            break;
-                        case R.id.aware_stream: //Stream
-                            Intent stream_ui = new Intent(getApplicationContext(), Stream_UI.class);
-                            startActivity(stream_ui);
-                            break;
+                    } else if (id == com.aware.phone.R.id.aware_stream) {
+                        Intent stream_ui = new Intent(getApplicationContext(), Stream_UI.class);
+                        startActivity(stream_ui);
                     }
                     return true;
                 }
@@ -58,7 +55,7 @@ public abstract class Aware_Activity extends AppCompatPreferenceActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.aware_menu, menu);
+        getMenuInflater().inflate(com.aware.phone.R.menu.aware_menu, menu);
         for (int i = 0; i < menu.size(); i++) {
             MenuItem item = menu.getItem(i);
             if (item.getTitle().toString().equalsIgnoreCase(getResources().getString(R.string.aware_qrcode)) && Aware.is_watch(this))

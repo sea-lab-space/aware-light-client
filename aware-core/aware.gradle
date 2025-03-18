@@ -6,21 +6,21 @@ buildscript {
         google_libs = "17.0.0"
         version_code = 6
         version_readable = "4.1." + version_code + "." + "light.bundle"
-        compile_sdk = 33
+        compile_sdk = 35
         target_sdk = 31
-        minimum_sdk = 24
-        build_tools = "30.0.3"
+        minimum_sdk = 26
+        build_tools = "34.0.0"
         aware_libs = "master-SNAPSHOT"
         kotlin_version = "1.7.10"
-        build_gradle = "7.4.2"
+        build_gradle = "8.6.0"
         anko_version = "0.10.8"
     }
 
     repositories {
+        google()
         maven {
             url 'https://maven.google.com'
         }
-        google()
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
@@ -33,10 +33,10 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         maven {
             url 'https://maven.google.com'
         }
-        google()
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" } //MPAndroidChart, AWARE

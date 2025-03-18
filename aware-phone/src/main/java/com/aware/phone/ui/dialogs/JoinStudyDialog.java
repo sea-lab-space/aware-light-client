@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
-import com.aware.phone.R;
+import com.aware.R;
 import com.aware.phone.ui.Aware_Join_Study;
 import com.aware.utils.StudyUtils;
 
@@ -42,14 +42,14 @@ public class JoinStudyDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
         LayoutInflater inflater = mActivity.getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.dialog_join_study, null);
+        final View dialogView = inflater.inflate(com.aware.phone.R.layout.dialog_join_study, null);
 
         builder.setView(dialogView);
         builder.setTitle("Enter URL for study")
                 .setPositiveButton("Join", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        EditText etStudyConfigUrl = dialogView.findViewById(R.id.et_join_study_url);
-                        EditText dbPassword = dialogView.findViewById(R.id.db_password); // manually input password
+                        EditText etStudyConfigUrl = dialogView.findViewById(com.aware.phone.R.id.et_join_study_url);
+                        EditText dbPassword = dialogView.findViewById(com.aware.phone.R.id.db_password); // manually input password
                         new ValidateStudyConfig().execute(etStudyConfigUrl.getText().toString(), dbPassword.getText().toString());
                     }
                 })

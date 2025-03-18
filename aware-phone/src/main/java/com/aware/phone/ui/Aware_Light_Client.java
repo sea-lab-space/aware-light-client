@@ -39,7 +39,7 @@ import android.widget.Toast;
 import com.aware.Applications;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
-import com.aware.phone.R;
+import com.aware.R;
 import com.aware.ui.PermissionsHandler;
 
 import org.json.JSONArray;
@@ -84,11 +84,11 @@ public class Aware_Light_Client extends Aware_Activity {
         prefs = getSharedPreferences("com.aware.phone", Context.MODE_PRIVATE);
 
         // Initialize views
-        setContentView(R.layout.activity_aware_light);
+        setContentView(com.aware.phone.R.layout.activity_aware_light);
         if (Aware.isStudy(getApplicationContext())) {
-            addPreferencesFromResource(R.xml.pref_aware_light);
+            addPreferencesFromResource(com.aware.phone.R.xml.pref_aware_light);
         } else {
-            addPreferencesFromResource(R.xml.pref_aware_device);
+            addPreferencesFromResource(com.aware.phone.R.xml.pref_aware_device);
         }
 //        hideUnusedPreferences();
 

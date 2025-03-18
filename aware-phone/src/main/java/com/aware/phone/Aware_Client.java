@@ -60,7 +60,7 @@ public class Aware_Client extends Aware_Activity implements SharedPreferences.On
         super.onCreate(savedInstanceState);
 
         prefs = getSharedPreferences("com.aware.phone", Context.MODE_PRIVATE);
-        addPreferencesFromResource(R.xml.aware_preferences);
+        addPreferencesFromResource(com.aware.R.xml.aware_preferences);
 
         setContentView(R.layout.aware_ui);
 
@@ -132,7 +132,7 @@ public class Aware_Client extends Aware_Activity implements SharedPreferences.On
             Dialog subpref = ((PreferenceScreen) preference).getDialog();
             ViewGroup root = (ViewGroup) subpref.findViewById(android.R.id.content).getParent();
             Toolbar toolbar = new Toolbar(this);
-            toolbar.setBackgroundColor(ContextCompat.getColor(preferenceScreen.getContext(), R.color.primary));
+            toolbar.setBackgroundColor(ContextCompat.getColor(preferenceScreen.getContext(), com.aware.R.color.primary));
             toolbar.setTitleTextColor(ContextCompat.getColor(preferenceScreen.getContext(), android.R.color.white));
             toolbar.setTitle(preference.getTitle());
             root.addView(toolbar, 0); //add to the top
@@ -260,7 +260,7 @@ public class Aware_Client extends Aware_Activity implements SharedPreferences.On
                         int icon_id = field.getInt(null);
                         Drawable category_icon = ContextCompat.getDrawable(getApplicationContext(), icon_id);
                         if (category_icon != null) {
-                            category_icon.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.accent), PorterDuff.Mode.SRC_IN));
+                            category_icon.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getApplicationContext(), com.aware.R.color.accent), PorterDuff.Mode.SRC_IN));
                             parent.setIcon(category_icon);
                             onContentChanged();
                         }
@@ -314,7 +314,7 @@ public class Aware_Client extends Aware_Activity implements SharedPreferences.On
                 PreferenceManager.setDefaultValues(getApplicationContext(), "com.aware.phone", Context.MODE_PRIVATE, com.aware.R.xml.aware_preferences, true);
                 prefs.edit().commit();
             } else {
-                PreferenceManager.setDefaultValues(getApplicationContext(), "com.aware.phone", Context.MODE_PRIVATE, R.xml.aware_preferences, false);
+                PreferenceManager.setDefaultValues(getApplicationContext(), "com.aware.phone", Context.MODE_PRIVATE, com.aware.R.xml.aware_preferences, false);
             }
 
             Map<String, ?> defaults = prefs.getAll();

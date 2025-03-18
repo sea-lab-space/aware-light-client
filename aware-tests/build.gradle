@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace "com.aware.tests"
     compileSdkVersion compile_sdk
     buildToolsVersion build_tools
 
