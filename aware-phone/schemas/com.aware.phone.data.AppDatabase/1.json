@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "aa6b6dd656c6669fe5ca53d29f57382d",
+    "identityHash": "e2734a91b8ff503287941726371f6360",
     "entities": [
       {
         "tableName": "health_connect_data",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deviceId` TEXT NOT NULL, `startTimestamp` INTEGER NOT NULL, `endTimestamp` INTEGER NOT NULL, `timestamp` INTEGER NOT NULL, `type` TEXT NOT NULL, `value` REAL NOT NULL, `isSync` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `deviceId` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `type` TEXT NOT NULL, `value` TEXT NOT NULL, `isSync` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -18,18 +18,6 @@
             "fieldPath": "deviceId",
             "columnName": "deviceId",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "startTimestamp",
-            "columnName": "startTimestamp",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "endTimestamp",
-            "columnName": "endTimestamp",
-            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -47,7 +35,7 @@
           {
             "fieldPath": "value",
             "columnName": "value",
-            "affinity": "REAL",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -70,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'aa6b6dd656c6669fe5ca53d29f57382d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e2734a91b8ff503287941726371f6360')"
     ]
   }
 }

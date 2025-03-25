@@ -2,6 +2,7 @@ package com.aware.phone.ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -63,6 +64,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.health.connect.client.HealthConnectClient;
 import androidx.health.connect.client.PermissionController;
+import androidx.work.WorkManager;
 
 import static com.aware.Aware.AWARE_NOTIFICATION_IMPORTANCE_GENERAL;
 import static com.aware.Aware.TAG;
@@ -228,12 +230,21 @@ public class Aware_Light_Client extends Aware_Activity {
 
         if (key.equals("status_health_connect")) {
             boolean isEnabled = sharedPreferences.getBoolean(key, false);
+
             if (isEnabled) {
                 Log.d(TAG, "Health Connect ON");
                 Intent intent = new Intent(this, HealthConnectSetupActivity.class);
                 startActivity(intent);
             } else {
                 Log.d(TAG, "Health Connect OFF");
+
+                Toast.makeText(
+                        this,
+                        "Please manually revoke permissions in settings",
+                        Toast.LENGTH_LONG
+                ).show();
+
+
             }
         }
 

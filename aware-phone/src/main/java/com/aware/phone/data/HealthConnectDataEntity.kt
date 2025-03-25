@@ -8,10 +8,8 @@ import androidx.room.PrimaryKey
 data class HealthConnectDataEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0, // Primary key, auto-increment
     val deviceId: String,        // device ID
-    val startTimestamp: Long,    // Data start time (milliseconds timestamp)
-    val endTimestamp: Long,      // Data end time (milliseconds timestamp)
     val timestamp: Long,         // Data retrieval time
-    val type: String,            // Data type (e.g., "step")
-    val value: Double,           // Data value (e.g., step count)
+    val type: String,            // Data type (e.g., "step", "heart_rate")
+    val value: String,           // Raw record.toString() content
     val isSync: Boolean          // Whether it has been synced to the server
 )

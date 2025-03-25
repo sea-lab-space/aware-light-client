@@ -5,28 +5,21 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.PermissionController
 import androidx.health.connect.client.permission.HealthPermission
-import androidx.health.connect.client.records.*
-import androidx.health.connect.client.request.ReadRecordsRequest
-import androidx.health.connect.client.time.TimeRangeFilter
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.aware.Aware
-import com.aware.Aware_Preferences
+import com.aware.phone.data.GeneralSyncWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.time.Instant
-import com.aware.phone.data.AppDatabase
-import com.aware.phone.data.HealthConnectDataEntity
-import com.aware.phone.data.StepSyncWorker
+import com.aware.phone.data.HealthConnectRecordList
 import java.util.concurrent.TimeUnit
 
 
@@ -35,51 +28,15 @@ class HealthConnectSetupActivity : AppCompatActivity() {
     private lateinit var healthConnectClient: HealthConnectClient
     private lateinit var statusText: TextView
 
-    private val PERMISSIONS = setOf(
-        HealthPermission.getReadPermission(ActiveCaloriesBurnedRecord::class),
-        HealthPermission.getReadPermission(BasalBodyTemperatureRecord::class),
-        HealthPermission.getReadPermission(BasalMetabolicRateRecord::class),
-        HealthPermission.getReadPermission(BloodGlucoseRecord::class),
-        HealthPermission.getReadPermission(BloodPressureRecord::class),
-        HealthPermission.getReadPermission(BodyFatRecord::class),
-        HealthPermission.getReadPermission(BodyTemperatureRecord::class),
-        HealthPermission.getReadPermission(BodyWaterMassRecord::class),
-        HealthPermission.getReadPermission(BoneMassRecord::class),
-        HealthPermission.getReadPermission(CervicalMucusRecord::class),
-        HealthPermission.getReadPermission(ExerciseSessionRecord::class),
-        HealthPermission.getReadPermission(DistanceRecord::class),
-        HealthPermission.getReadPermission(ElevationGainedRecord::class),
-        HealthPermission.getReadPermission(FloorsClimbedRecord::class),
-        HealthPermission.getReadPermission(HeartRateRecord::class),
-        HealthPermission.getReadPermission(HeartRateVariabilityRmssdRecord::class),
-        HealthPermission.getReadPermission(HeightRecord::class),
-        HealthPermission.getReadPermission(HydrationRecord::class),
-        HealthPermission.getReadPermission(IntermenstrualBleedingRecord::class),
-        HealthPermission.getReadPermission(LeanBodyMassRecord::class),
-        HealthPermission.getReadPermission(MenstruationFlowRecord::class),
-        HealthPermission.getReadPermission(NutritionRecord::class),
-        HealthPermission.getReadPermission(OvulationTestRecord::class),
-        HealthPermission.getReadPermission(OxygenSaturationRecord::class),
-        HealthPermission.getReadPermission(PowerRecord::class),
-        HealthPermission.getReadPermission(RespiratoryRateRecord::class),
-        HealthPermission.getReadPermission(RestingHeartRateRecord::class),
-        HealthPermission.getReadPermission(SexualActivityRecord::class),
-        HealthPermission.getReadPermission(SkinTemperatureRecord::class),
-        HealthPermission.getReadPermission(SleepSessionRecord::class),
-        HealthPermission.getReadPermission(SpeedRecord::class),
-        HealthPermission.getReadPermission(StepsRecord::class),
-        HealthPermission.getReadPermission(TotalCaloriesBurnedRecord::class),
-        HealthPermission.getReadPermission(Vo2MaxRecord::class),
-        HealthPermission.getReadPermission(WeightRecord::class),
-        HealthPermission.getReadPermission(WheelchairPushesRecord::class)
-    )
-
+    private val PERMISSIONS = HealthConnectRecordList.supportedRecordTypes
+        .map { HealthPermission.getReadPermission(it) }
+        .toSet()
 
     private val permissionRequestLauncher =
         this.registerForActivityResult(PermissionController.createRequestPermissionResultContract()) { granted ->
             if (granted.containsAll(PERMISSIONS)) {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
-                statusText.text = "Permissions granted. Reading steps..."
+                statusText.text = "Permissions granted. Reading records..."
                 scheduleHourlyStepSync()
             } else {
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
@@ -131,25 +88,23 @@ class HealthConnectSetupActivity : AppCompatActivity() {
                 statusText.text = "Requesting permissions..."
                 permissionRequestLauncher.launch(PERMISSIONS)
             } else {
-                statusText.text = "Permissions already granted. Reading steps..."
+                statusText.text = "Permissions already granted. Reading records..."
                 scheduleHourlyStepSync()
             }
         }
     }
 
     private fun scheduleHourlyStepSync() {
-        // TODO: Xiaowen: Make it dynamic
-        // Schedule a periodic work to sync steps every 15 minutes (minimum interval)
-        val workRequest = PeriodicWorkRequestBuilder<StepSyncWorker>(15, TimeUnit.MINUTES)
-            .build()
+        // TODO: Xiaowen: Make frequency of reading from health connect dynamic from config
+        val workRequest = PeriodicWorkRequestBuilder<GeneralSyncWorker>(15, TimeUnit.MINUTES).build()
 
         WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-            "StepSyncWork",
-            ExistingPeriodicWorkPolicy.KEEP,
+            "GeneralSyncWork",
+            ExistingPeriodicWorkPolicy.UPDATE,
             workRequest
         )
+
+        Log.d("HealthConnectSetup", "Scheduled GeneralSyncWorker to run every 15 minutes.")
     }
-
-
 
 }
