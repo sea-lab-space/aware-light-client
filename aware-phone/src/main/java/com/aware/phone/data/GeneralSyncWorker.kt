@@ -18,6 +18,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.time.Duration
 import java.time.Instant
+import java.util.concurrent.TimeUnit
 
 class GeneralSyncWorker(
     appContext: Context,
@@ -142,7 +143,8 @@ class GeneralSyncWorker(
                     withContext(Dispatchers.IO) {
                         unsynced.forEach { dao.markAsSynced(it.id) }
                     }
-                    // TODO: Xiaowen: Clean old Data
+
+                    cleanOldSyncedData()
                 } else {
                     Log.e("GeneralSyncWorker", "Upload failed with code $responseCode")
                 }
@@ -151,4 +153,33 @@ class GeneralSyncWorker(
             Log.e("GeneralSyncWorker", "Upload failed: ${e.message}", e)
         }
     }
+
+    private suspend fun cleanOldSyncedData() {
+        val frequency = Aware.getSetting(applicationContext, Aware_Preferences.FREQUENCY_CLEAN_OLD_DATA)?.toIntOrNull() ?: 0
+
+        val cutoffTime = when (frequency) {
+            1 -> System.currentTimeMillis() - TimeUnit.DAYS.toMillis(7)    // weekly
+            2 -> System.currentTimeMillis() - TimeUnit.DAYS.toMillis(30)   // monthly
+            3 -> System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1)    // daily
+            4 -> Long.MAX_VALUE                                            // always (delete all synced data)
+            else -> null                                                   // never or invalid value
+        }
+
+        val dao = AppDatabase.getDatabase(applicationContext).healthConnectDataDao()
+
+        if (cutoffTime != null) {
+            withContext(Dispatchers.IO) {
+                if (frequency == 4) {
+                    dao.deleteAllSyncedData()
+                    Log.d("GeneralSyncWorker", "All synced data deleted (clean=always).")
+                } else {
+                    dao.deleteOldSyncedData(cutoffTime)
+                    Log.d("GeneralSyncWorker", "Deleted synced data older than $cutoffTime (clean=$frequency).")
+                }
+            }
+        } else {
+            Log.d("GeneralSyncWorker", "Skip cleaning old data (clean=$frequency).")
+        }
+    }
+
 }

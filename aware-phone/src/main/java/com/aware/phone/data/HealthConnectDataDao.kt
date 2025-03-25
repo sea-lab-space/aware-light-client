@@ -31,4 +31,12 @@ interface HealthConnectDataDao {
 
     @Query("UPDATE health_connect_data SET isSync = 1 WHERE id = :id")
     suspend fun markAsSynced(id: Int)
+
+    @Query("DELETE FROM health_connect_data WHERE isSync = 1 AND timestamp < :cutoffTime")
+    suspend fun deleteOldSyncedData(cutoffTime: Long)
+
+    // Delete all data that is marked as synced
+    @Query("DELETE FROM health_connect_data WHERE isSync = 1")
+    suspend fun deleteAllSyncedData()
+
 }

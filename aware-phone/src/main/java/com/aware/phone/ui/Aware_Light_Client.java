@@ -55,16 +55,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.health.connect.client.HealthConnectClient;
-import androidx.health.connect.client.PermissionController;
-import androidx.work.WorkManager;
 
 import static com.aware.Aware.AWARE_NOTIFICATION_IMPORTANCE_GENERAL;
 import static com.aware.Aware.TAG;
@@ -503,7 +497,7 @@ public class Aware_Light_Client extends Aware_Activity {
                     findPreference(Aware_Preferences.DEBUG_DB_SLOW),
                     findPreference(Aware_Preferences.FOREGROUND_PRIORITY),
                     findPreference(Aware_Preferences.STATUS_TOUCH),
-                    findPreference(Aware_Preferences.STATUS_HEALTH_CONNECT)
+                    findPreference(Aware_Preferences.STATUS_HEALTH_CONNECT),
                     );
         }
     }
