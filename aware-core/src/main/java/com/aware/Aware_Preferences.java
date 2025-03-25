@@ -447,6 +447,8 @@ public class Aware_Preferences {
      */
     public static final String PACKAGE_SPECIFICATION = "package_specification";
 
+    public static final String STATUS_HEALTH_CONNECT = "status_health_connect";
+
 
 
     /**
@@ -735,4 +737,5 @@ public class Aware_Preferences {
      * AES 128-bit key for decrypting study config file
      */
     public static final String STUDY_CONFIG_KEY = "study_config_key";
+
 }

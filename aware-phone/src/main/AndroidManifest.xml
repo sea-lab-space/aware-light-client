@@ -101,6 +101,34 @@
         </activity>
         <activity android:name=".ui.Aware_Participant" />
 
+        <activity android:name=".ui.HealthConnectSetupActivity" />
+
+        <activity
+            android:name=".ui.PermissionsRationaleActivity"
+            android:exported="true">
+
+            <!-- For Android 13 and before -->
+            <intent-filter>
+                <action android:name="androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE" />
+            </intent-filter>
+        </activity>
+
+        <!-- For Android 14+ -->
+        <activity-alias
+            android:name="ViewPermissionUsageActivity"
+            android:exported="true"
+            android:targetActivity=".ui.PermissionsRationaleActivity"
+            android:permission="android.permission.START_VIEW_PERMISSION_USAGE">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW_PERMISSION_USAGE"/>
+                <category android:name="android.intent.category.HEALTH_PERMISSIONS"/>
+            </intent-filter>
+        </activity-alias>
+
+
+
+
+
         <receiver
             android:name="com.aware.Aware$AndroidPackageMonitor"
             android:exported="true">
@@ -111,13 +139,15 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.aware.Aware$AwareBoot">
+        <receiver android:name="com.aware.Aware$AwareBoot"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
     </application>
     <permission
         android:name="com.aware.READ_CONTEXT_DATA"
@@ -173,8 +203,8 @@
 
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
-    <!-- ========== Health Connect extra permission ========== -->
-    <!-- background reading & history data reading -->
+<!--     ========== Health Connect extra permission ========== -->
+<!--     background reading & history data reading -->
     <uses-permission android:name="android.permission.health.READ_HEALTH_DATA_IN_BACKGROUND"/>
     <uses-permission android:name="android.permission.health.READ_HEALTH_DATA_HISTORY"/>
 
@@ -217,6 +247,10 @@
     <uses-permission android:name="android.permission.health.READ_VO2_MAX"/>
     <uses-permission android:name="android.permission.health.READ_WEIGHT"/>
     <uses-permission android:name="android.permission.health.READ_WHEELCHAIR_PUSHES"/>
+
+    <queries>
+        <package android:name="com.google.android.apps.healthdata" />
+    </queries>
 
 
 </manifest>

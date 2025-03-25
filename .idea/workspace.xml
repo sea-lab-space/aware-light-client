@@ -35,6 +35,26 @@
           <theme>@android:style/Theme.Material.Light</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/aware-core/src/main/res/xml/aware_preferences.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/aware-phone/src/main/res/layout/activity_aware_light.xml">
+        <config>
+          <theme>@style/Theme.Aware</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/aware-phone/src/main/res/layout/activity_health_connect_setup.xml">
+        <config>
+          <theme>@style/Theme.Aware</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/aware-phone/src/main/res/layout/activity_permissions_rationale.xml">
+        <config>
+          <theme>@style/Theme.Aware</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/aware-phone/src/main/res/layout/aware_join_study.xml">
         <config>
           <theme>@style/Theme.Aware</theme>
@@ -50,6 +70,11 @@
           <theme>@style/Theme.Aware</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/aware-phone/src/main/res/xml/pref_aware_light.xml">
+        <config>
+          <theme>@style/Theme.Aware</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -57,35 +82,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7e2f228-f813-4989-9c27-784ea2f56733" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/AppDatabase.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectDataDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectDataEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/StepSyncWorker.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/HealthConnectSetupActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/PermissionsRationaleActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/res/drawable/ic_action_health_connect.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-phone/src/main/res/layout/activity_health_connect_setup.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list.lib/libs/anko-0.10.8.aar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list/libs/anko-0.10.8.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/checksums/sha1-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-core/aware.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/aware.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware_Preferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware_Preferences.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/res/xml/aware_preferences.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/res/xml/aware_preferences.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aware-phone/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/aware-phone/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Participant.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Participant.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/prefs/JoinStudyPref.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/prefs/JoinStudyPref.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/prefs/QuitStudyPref.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/prefs/QuitStudyPref.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-tests/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aware-tests/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-tests/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-tests/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Light_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Light_Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/res/xml/pref_aware_light.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/res/xml/pref_aware_light.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise/src/main/AndroidManifest.xml" afterDir="false" />
@@ -129,7 +154,6 @@
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio.lib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio.lib/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio/src/main/java/com/aware/plugin/studentlife/audio_final/Plugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.studentlife.audio_final/com.aware.plugin.studentlife.audio/src/main/java/com/aware/plugin/studentlife/audio_final/Plugin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +190,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
+        <option value="Class" />
+        <option value="Kotlin Object" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
