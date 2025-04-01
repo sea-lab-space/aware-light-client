@@ -733,12 +733,11 @@
 
         </PreferenceScreen>
 
-        <SwitchPreference
-            android:defaultValue="false"
+
+        <Preference
             android:key="status_health_connect"
-            android:persistent="true"
             android:title="Health Connect"
-            android:summary="Access to Google Health Connect data"
+            android:summary="Manage access to Google Health Connect"
             android:icon="@drawable/ic_action_health_connect" />
 
 

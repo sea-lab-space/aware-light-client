@@ -162,6 +162,16 @@ public class Aware_Light_Client extends Aware_Activity {
             whitelisting.setData(Uri.parse("package:" + getPackageName()));
             startActivity(whitelisting);
         }
+
+        Preference healthConnectPref = findPreference("status_health_connect");
+        if (healthConnectPref != null) {
+            healthConnectPref.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(this, HealthConnectSetupActivity.class);
+                startActivity(intent);
+                return true;
+            });
+        }
+
     }
 
     @Override
@@ -220,25 +230,25 @@ public class Aware_Light_Client extends Aware_Activity {
             list.setSummary(list.getEntry());
         }
 
-        if (key.equals("status_health_connect")) {
-            boolean isEnabled = sharedPreferences.getBoolean(key, false);
-
-            if (isEnabled) {
-                Log.d(TAG, "Health Connect ON");
-                Intent intent = new Intent(this, HealthConnectSetupActivity.class);
-                startActivity(intent);
-            } else {
-                Log.d(TAG, "Health Connect OFF");
-
-                Toast.makeText(
-                        this,
-                        "Please manually revoke permissions in settings",
-                        Toast.LENGTH_LONG
-                ).show();
-
-
-            }
-        }
+//        if (key.equals("status_health_connect")) {
+//            boolean isEnabled = sharedPreferences.getBoolean(key, false);
+//
+//            if (isEnabled) {
+//                Log.d(TAG, "Health Connect ON");
+//                Intent intent = new Intent(this, HealthConnectSetupActivity.class);
+//                startActivity(intent);
+//            } else {
+//                Log.d(TAG, "Health Connect OFF");
+//
+//                Toast.makeText(
+//                        this,
+//                        "Please manually revoke permissions in settings",
+//                        Toast.LENGTH_LONG
+//                ).show();
+//
+//
+//            }
+//        }
 
     }
 
