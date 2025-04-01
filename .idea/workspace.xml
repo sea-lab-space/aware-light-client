@@ -40,6 +40,11 @@
           <theme>@android:style/Theme.Material.Light</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/aware-core/src/main/res/xml/sync_healthconnect.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/aware-phone/src/main/res/layout/activity_aware_light.xml">
         <config>
           <theme>@style/Theme.Aware</theme>
@@ -70,6 +75,11 @@
           <theme>@style/Theme.Aware</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/com.aware.plugin.google.auth/com.aware.plugin.google.auth/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@android:style/Theme.Material.Light</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -77,19 +87,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e7e2f228-f813-4989-9c27-784ea2f56733" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Healthconnect.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/providers/Healthconnect_Provider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/syncadapters/Healthconnect_Sync.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/utils/HealthConnectRecordTypeList.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/workers/HealthConnectWorker.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/aware-core/src/main/res/xml/sync_healthconnect.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list.lib/libs/anko-0.10.8.aar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list/libs/anko-0.10.8.aar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/md5-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/sha1-checksums.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.7/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/GeneralSyncWorker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/GeneralSyncWorker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectDataDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectDataDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware_Preferences.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware_Preferences.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/syncadapters/Accelerometer_Sync.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/syncadapters/Accelerometer_Sync.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/AppDatabase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/GeneralSyncWorker.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectDataDao.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectDataEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/data/HealthConnectRecordList.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Light_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Light_Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/HealthConnectSetupActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/HealthConnectSetupActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise/src/main/AndroidManifest.xml" afterDir="false" />
@@ -169,9 +226,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="resourceFile" />
         <option value="Class" />
         <option value="Kotlin Object" />
-        <option value="layoutResourceFile_vertical" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -189,6 +247,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;AnalyzeApkAction.lastApkPath&quot;: &quot;/Users/xiaowenlin/Code/SEA/Aware/aware-light-client/aware-phone/build/intermediates/apk/debug/aware-phone-arm64-v8a-debug.apk&quot;,
     &quot;Android App.aware phone.executor&quot;: &quot;Run&quot;,
     &quot;Android App.aware-phone.executor&quot;: &quot;Run&quot;,
     &quot;Android App.aware-tests.executor&quot;: &quot;Run&quot;,
@@ -424,12 +483,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware.java</url>
-          <line>2476</line>
+          <line>2477</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/aware-core/src/main/java/com/aware/Aware.java</url>
-          <line>2458</line>
+          <line>2459</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>

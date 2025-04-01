@@ -447,9 +447,21 @@ public class Aware_Preferences {
      */
     public static final String PACKAGE_SPECIFICATION = "package_specification";
 
+    /**
+     * Activate/deactivate Health Connect Collection Functionality (boolean)
+     */
     public static final String STATUS_HEALTH_CONNECT = "status_health_connect";
 
+    /**
+     * Health Connect frequency in hours
+     */
+    public static final String FREQUENCY_HEALTH_CONNECT = "frequency_health_connect";
 
+    /**
+     * Health Connect preperiod in days in first request
+     * Maximum: 30 days (health connect policy limitation)
+     */
+    public static final String PREPERIOD_HEALTH_CONNECT = "perperiod_health_connect";
 
     /**
      * Activate/deactivate temperature sensor log (boolean)

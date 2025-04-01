@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.IBinder;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import com.aware.providers.Accelerometer_Provider;
 
@@ -18,6 +20,7 @@ public class Accelerometer_Sync extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
         synchronized (sSyncAdapterLock) {
             if (sSyncAdapter == null) {
                 sSyncAdapter = new AwareSyncAdapter(getApplicationContext(), true, true);

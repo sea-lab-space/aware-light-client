@@ -5,22 +5,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.health.connect.client.HealthConnectClient
 import androidx.health.connect.client.PermissionController
 import androidx.health.connect.client.permission.HealthPermission
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import com.aware.phone.data.GeneralSyncWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.aware.phone.data.HealthConnectRecordList
-import java.util.concurrent.TimeUnit
+import com.aware.utils.HealthConnectRecordTypeList
 
 
 class HealthConnectSetupActivity : AppCompatActivity() {
@@ -28,7 +22,7 @@ class HealthConnectSetupActivity : AppCompatActivity() {
     private lateinit var healthConnectClient: HealthConnectClient
     private lateinit var statusText: TextView
 
-    private val PERMISSIONS = HealthConnectRecordList.supportedRecordTypes
+    private val PERMISSIONS = HealthConnectRecordTypeList.supportedRecordTypes
         .map { HealthPermission.getReadPermission(it) }
         .toSet()
 
@@ -37,7 +31,7 @@ class HealthConnectSetupActivity : AppCompatActivity() {
             if (granted.containsAll(PERMISSIONS)) {
                 Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show()
                 statusText.text = "Permissions granted. Reading records..."
-                scheduleHourlyStepSync()
+                com.aware.Aware.startHealthConnect(applicationContext)
             } else {
                 Toast.makeText(this, "Permissions denied", Toast.LENGTH_SHORT).show()
                 statusText.text = "Permissions denied. Please enable permissions manually."
@@ -89,22 +83,10 @@ class HealthConnectSetupActivity : AppCompatActivity() {
                 permissionRequestLauncher.launch(PERMISSIONS)
             } else {
                 statusText.text = "Permissions already granted. Reading records..."
-                scheduleHourlyStepSync()
+                com.aware.Aware.startHealthConnect(applicationContext)
             }
         }
     }
 
-    private fun scheduleHourlyStepSync() {
-        // TODO: Xiaowen: Make frequency of reading from health connect dynamic from config
-        val workRequest = PeriodicWorkRequestBuilder<GeneralSyncWorker>(15, TimeUnit.MINUTES).build()
-
-        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-            "GeneralSyncWork",
-            ExistingPeriodicWorkPolicy.UPDATE,
-            workRequest
-        )
-
-        Log.d("HealthConnectSetup", "Scheduled GeneralSyncWorker to run every 15 minutes.")
-    }
 
 }

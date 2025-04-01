@@ -63,6 +63,7 @@
     <string name="sensor_traffic">Network traffic</string>
     <string name="sensor_processor">Processor (CPU)</string>
     <string name="sensor_timezone">Timezone</string>
+    <string name="sensor_healthconnect">Healthconnect</string>
     <string name="sensor_battery">Battery</string>
     <string name="sensor_screen">Screen</string>
     <string name="sensor_network_usage">Network</string>

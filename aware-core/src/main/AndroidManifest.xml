@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
 <!--    package="com.aware">-->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -159,6 +160,9 @@
             android:exported="true" />
         <service
             android:name="com.aware.Timezone"
+            android:exported="true" />
+        <service
+            android:name="com.aware.Healthconnect"
             android:exported="true" />
         <service
             android:name="com.aware.Mqtt"
@@ -420,6 +424,14 @@
             android:authorities="${applicationId}.provider.timezone"
             android:exported="true"
             android:label="@string/sensor_timezone"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:syncable="true"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA" />
+        <provider
+            android:name="com.aware.providers.Healthconnect_Provider"
+            android:authorities="${applicationId}.provider.healthconnect"
+            android:exported="true"
+            android:label="@string/sensor_healthconnect"
             android:readPermission="com.aware.READ_CONTEXT_DATA"
             android:syncable="true"
             android:writePermission="com.aware.WRITE_CONTEXT_DATA" />
@@ -753,6 +765,17 @@
                 android:resource="@xml/sync_timezones" />
         </service>
         <service
+            android:name="com.aware.syncadapters.Healthconnect_Sync"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_healthconnect" />
+        </service>
+
+        <service
             android:name="com.aware.syncadapters.Traffic_Sync"
             android:exported="true">
             <intent-filter>
@@ -772,6 +795,13 @@
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/sync_wifi" />
         </service>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge" />
+
 
     </application>
 

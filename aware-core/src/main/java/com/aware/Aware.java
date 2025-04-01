@@ -193,6 +193,7 @@ public class Aware extends Service {
     private static Intent wifiSrv = null;
     private static Intent telephonySrv = null;
     private static Intent timeZoneSrv = null;
+    private static Intent healthConnectSrv = null;
     private static Intent rotationSrv = null;
     private static Intent lightSrv = null;
     private static Intent proximitySrv = null;
@@ -2517,6 +2518,10 @@ public class Aware extends Service {
             startTimeZone(context);
         } else stopTimeZone(context);
 
+//        if (Aware.getSetting(context, Aware_Preferences.STATUS_HEALTH_CONNECT).equals("true")) {
+//            startHealthConnect(context);
+//        } else stopHealthConnect(context);
+
         if (Aware.getSetting(context, Aware_Preferences.STATUS_MQTT).equals("true")) {
             startMQTT(context);
         } else stopMQTT(context);
@@ -2689,6 +2694,7 @@ public class Aware extends Service {
         stopWiFi(context);
         stopTelephony(context);
         stopTimeZone(context);
+        stopHealthConnect(context);
         stopRotation(context);
         stopLight(context);
         stopProximity(context);
@@ -3069,14 +3075,6 @@ public class Aware extends Service {
         }
     }
 
-//    /**
-//     * Start the health connect module
-//     */
-//    public static void startHealthConnect(Context context) {
-//        if (context == null) return;
-//        if (healthConnectSrv == null) healthConnectSrv = new Intent(context, HealthConnectService.class);
-//        context.startService(healthConnectSrv);
-//    }
 
 
     /**
@@ -3179,6 +3177,23 @@ public class Aware extends Service {
     public static void stopTimeZone(Context context) {
         if (context == null) return;
         if (timeZoneSrv != null) context.stopService(timeZoneSrv);
+    }
+
+    /**
+     * Start the Health Connect module
+     */
+    public static void startHealthConnect(Context context) {
+        if (context == null) return;
+        if (healthConnectSrv == null) healthConnectSrv = new Intent(context, Healthconnect.class);
+        context.startService(healthConnectSrv);
+    }
+
+    /**
+     * Stop the Health Connect module
+     */
+    public static void stopHealthConnect(Context context) {
+        if (context == null) return;
+        if (healthConnectSrv != null) context.stopService(healthConnectSrv);
     }
 
     /**

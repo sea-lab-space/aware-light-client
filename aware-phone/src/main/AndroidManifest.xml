@@ -128,7 +128,6 @@
 
 
 
-
         <receiver
             android:name="com.aware.Aware$AndroidPackageMonitor"
             android:exported="true">

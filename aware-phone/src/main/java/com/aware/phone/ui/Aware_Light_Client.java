@@ -1,8 +1,6 @@
 package com.aware.phone.ui;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -497,7 +495,7 @@ public class Aware_Light_Client extends Aware_Activity {
                     findPreference(Aware_Preferences.DEBUG_DB_SLOW),
                     findPreference(Aware_Preferences.FOREGROUND_PRIORITY),
                     findPreference(Aware_Preferences.STATUS_TOUCH),
-                    findPreference(Aware_Preferences.STATUS_HEALTH_CONNECT),
+                    findPreference(Aware_Preferences.STATUS_HEALTH_CONNECT)
                     );
         }
     }

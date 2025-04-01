@@ -44,6 +44,7 @@ android {
         resValue "string", "provider_telephony", "com.aware.provider.telephony"
         resValue "string", "provider_temperature", "com.aware.provider.temperature"
         resValue "string", "provider_timezones", "com.aware.provider.timezone"
+        resValue "string", "provider_healthconnect", "com.aware.provider.healthconnect"
         resValue "string", "provider_traffic", "com.aware.provider.traffic"
         resValue "string", "provider_wifi", "com.aware.provider.wifi"
     }
@@ -88,5 +89,10 @@ dependencies {
     implementation files('libs/mysql-connector-java-5.1.48.jar')
     implementation files('libs/jsonassert-1.5.0.jar')
     implementation "androidx.health.connect:connect-client:1.1.0-beta01"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    implementation "androidx.work:work-runtime-ktx:2.9.0"
+
 }
 

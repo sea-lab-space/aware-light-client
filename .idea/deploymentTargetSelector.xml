@@ -4,6 +4,14 @@
     <selectionStates>
       <SelectionState runConfigName="aware phone">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2025-03-26T04:29:31.253520Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/xiaowenlin/.android/avd/Pixel_9_API_35.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
       <SelectionState runConfigName="aware-tests">
         <option name="selectionMode" value="DROPDOWN" />

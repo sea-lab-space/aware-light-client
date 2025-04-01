@@ -49,6 +49,7 @@ android {
         resValue "string", "provider_telephony", android.defaultConfig.applicationId + ".provider.telephony"
         resValue "string", "provider_temperature", android.defaultConfig.applicationId + ".provider.temperature"
         resValue "string", "provider_timezones", android.defaultConfig.applicationId + ".provider.timezone"
+        resValue "string", "provider_healthconnect", android.defaultConfig.applicationId + ".provider.healthconnect"
         resValue "string", "provider_traffic", android.defaultConfig.applicationId + ".provider.traffic"
         resValue "string", "provider_wifi", android.defaultConfig.applicationId + ".provider.wifi"
 
@@ -63,6 +64,10 @@ android {
         resValue "string", "provider_google_fused", android.defaultConfig.applicationId + ".provider.geofences"
         resValue "string", "provider_openweather", android.defaultConfig.applicationId + ".provider.openweather"
         resValue "string", "provider_sensortag", android.defaultConfig.applicationId + ".provider.sensortag"
+
+        buildFeatures {
+            buildConfig = true
+        }
     }
 
     splits {
@@ -109,6 +114,8 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/java'
     }
+
+
 }
 
 if (System.getenv("storeFile") != null && System.getenv("storePassword") != null && System.getenv("keyAlias") != null && System.getenv("keyPassword") != null) {
@@ -166,6 +173,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation "androidx.work:work-runtime-ktx:2.9.0"
+
 
 }
 
