@@ -89,10 +89,8 @@
     <list default="true" id="e7e2f228-f813-4989-9c27-784ea2f56733" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list.lib/libs/anko-0.10.8.aar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/com.aware.plugin.contacts_list/com.aware.plugin.contacts_list/libs/anko-0.10.8.aar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Light_Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/java/com/aware/phone/ui/Aware_Light_Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aware-phone/src/main/res/xml/pref_aware_light.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aware-phone/src/main/res/xml/pref_aware_light.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/providers/Healthconnect_Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/aware-core/src/main/java/com/aware/providers/Healthconnect_Provider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise.lib/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com.aware.plugin.ambient_noise/com.aware.plugin.ambient_noise/src/main/AndroidManifest.xml" afterDir="false" />
@@ -145,7 +143,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=R5CR313VX5B)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/xiaowenlin/.android/avd/Pixel_9_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />

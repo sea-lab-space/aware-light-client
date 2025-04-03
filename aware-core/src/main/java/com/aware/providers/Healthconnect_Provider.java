@@ -19,7 +19,7 @@ import com.aware.utils.DatabaseHelper;
 import java.util.HashMap;
 
 /**
- * Healthconnect内容提供者，定义healthconnect数据库表及操作。
+ * Healthconnect content provider，define healthconnect database operations
  */
 public class Healthconnect_Provider extends ContentProvider {
 
@@ -37,7 +37,7 @@ public class Healthconnect_Provider extends ContentProvider {
         public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.aware.healthconnect";
         public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.aware.healthconnect";
 
-        // 数据库字段：id, timestamp, device_id, type, value
+        // database fields：id, timestamp, device_id, type, value
         public static final String _ID = "_id";
         public static final String TIMESTAMP = "timestamp";
         public static final String DEVICE_ID = "device_id";
