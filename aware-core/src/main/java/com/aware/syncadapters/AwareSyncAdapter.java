@@ -627,7 +627,8 @@ public class AwareSyncAdapter extends AbstractThreadedSyncAdapter {
             request.put(Aware_Preferences.DEVICE_ID, DEVICE_ID);
             request.put("data", rows.toString());
 
-            boolean dataInserted = Jdbc.insertData(mContext, DATABASE_TABLE, rows);
+//            boolean dataInserted = Jdbc.insertData(mContext, DATABASE_TABLE, rows);
+            boolean dataInserted = Jdbc.insertDataViaApi(mContext, Aware.getSetting(mContext, Aware_Preferences.SERVER_URL),  Aware.getSetting(mContext, Aware_Preferences.STUDY_NUMBER),  Aware.getSetting(mContext, Aware_Preferences.STUDY_KEY), DATABASE_TABLE, rows);
 
             //Something went wrong, e.g., server is down, lost internet, etc.
             if (!dataInserted) {

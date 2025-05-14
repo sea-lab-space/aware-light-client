@@ -11,6 +11,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -91,6 +96,28 @@ public class Jdbc {
         } catch (Exception e) {
             Log.e(TAG, "Failed to establish connection to database, reason: " + e.getMessage());
             e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * Test if API server is reachable.
+     *
+     * @param url API endpoint URL
+     * @return true if server responds with 200, false otherwise
+     */
+    public static boolean testApiConnection(String url) {
+        try {
+            URL apiUrl = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(5000);  // 5 seconds
+            connection.setReadTimeout(5000);
+            int responseCode = connection.getResponseCode();
+            connection.disconnect();
+            return responseCode == 200;
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to connect to API, reason: " + e.getMessage());
             return false;
         }
     }
@@ -184,4 +211,59 @@ public class Jdbc {
             if (Jdbc.transactionCount == 0) disconnect();
         }
     }
+
+    /**
+     * Inserts data into a remote database table via API.
+     *
+     * @param context application context
+     * @param baseUrl base URL of the API (e.g. https://awaremicro.sensing-ehr.org)
+     * @param studyNumber study number, specified in the aware micro server configuration file
+     * @param studyKey study key, specified in the aware micro server configuration file
+     * @param table name of table to insert data into
+     * @param rows list of the rows of data to insert
+     * @return true if the data is inserted successfully, false otherwise
+     */
+    public static boolean insertDataViaApi(Context context, String baseUrl, String studyNumber, String studyKey, String table, JSONArray rows) {
+        try {
+            if (rows.length() == 0) return true;
+
+            // get full URL like: https://server.com/index.php/1/abc123/steps/insert
+            String fullUrl = baseUrl;
+            if (!fullUrl.endsWith("/")) fullUrl += "/";
+            fullUrl += "index.php/" + studyNumber + "/" + studyKey + "/" + table + "/insert";
+
+            Log.i("ApiUtils", "post to url: " + fullUrl);
+
+            URL apiUrl = new URL(fullUrl);
+            HttpURLConnection conn = (HttpURLConnection) apiUrl.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            conn.setDoOutput(true);
+
+            String deviceId = Aware.getSetting(context, Aware_Preferences.DEVICE_ID);
+            String formBody = "device_id=" + URLEncoder.encode(deviceId, "UTF-8") +
+                    "&data=" + rows.toString();
+
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = formBody.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            int responseCode = conn.getResponseCode();
+            conn.disconnect();
+
+            if (responseCode == 200) {
+                Log.i("ApiUtils", "Successfully inserted data to API.");
+                return true;
+            } else {
+                Log.e("ApiUtils", "API returned error code: " + responseCode);
+                return false;
+            }
+        } catch (Exception e) {
+            Log.e("ApiUtils", "Error sending data to API: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

@@ -730,6 +730,21 @@ public class Aware_Preferences {
     public static final String DB_PASSWORD = "database_password";
 
     /**
+     * server URL of the remote database e.g.https://awaremicro.sensing-ehr.org
+     */
+    public static final String SERVER_URL = "server_url";
+
+    /**
+     * study key that specified in aware micro server configuration file
+     */
+    public static final String STUDY_KEY = "study_key";
+
+    /**
+     * study number that specified in aware micro server configuration file
+     */
+    public static final String STUDY_NUMBER = "study_number";
+
+    /**
      * Certificate Authority (CA) of the remote database.
      * This needs to be added to the application's trust store in case the CA is self signed.
      */

@@ -44,6 +44,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import androidx.core.app.NotificationCompat;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -51,7 +52,7 @@ import okhttp3.Response;
 /**
  * Service that allows plugins/applications to send data to AWARE's dashboard study
  * Note: joins a study without requiring a QRCode, just the study URL
- *
+ * <p>
  * TODO: fix parsing of the URL segments that may be missing
  */
 public class StudyUtils extends IntentService {
@@ -68,7 +69,6 @@ public class StudyUtils extends IntentService {
     public StudyUtils() {
         super("StudyUtils Service");
     }
-
 
 
     @Override
@@ -266,19 +266,23 @@ public class StudyUtils extends IntentService {
 
             // Set database settings
             JSONObject dbConfig = studyConfig.getJSONObject("database");
-            Aware.setSetting(context, Aware_Preferences.DB_HOST, dbConfig.getString("database_host"));
-            Aware.setSetting(context, Aware_Preferences.DB_PORT, dbConfig.getInt("database_port"));
-            Aware.setSetting(context, Aware_Preferences.DB_NAME, dbConfig.getString("database_name"));
-            Aware.setSetting(context, Aware_Preferences.DB_USERNAME, dbConfig.getString("database_username"));
+//            Aware.setSetting(context, Aware_Preferences.DB_HOST, dbConfig.getString("database_host"));
+//            Aware.setSetting(context, Aware_Preferences.DB_PORT, dbConfig.getInt("database_port"));
+//            Aware.setSetting(context, Aware_Preferences.DB_NAME, dbConfig.getString("database_name"));
+//            Aware.setSetting(context, Aware_Preferences.DB_USERNAME, dbConfig.getString("database_username"));
+
+            //set server settings
+            Aware.setSetting(context, Aware_Preferences.SERVER_URL, dbConfig.getString("server_url"));
+            Aware.setSetting(context, Aware_Preferences.STUDY_KEY, dbConfig.getString("study_key"));
+            Aware.setSetting(context, Aware_Preferences.STUDY_NUMBER, dbConfig.getString("study_number"));
 
 
-            if (!dbConfig.getBoolean("config_without_password")){
+            if (!dbConfig.getBoolean("config_without_password")) {
                 Aware.setSetting(context, Aware_Preferences.DB_PASSWORD, dbConfig.getString("database_password"));
             } else {
 
                 Aware.setSetting(context, Aware_Preferences.DB_PASSWORD, input_password);
             }
-
 
 
             // Set study information
@@ -415,9 +419,10 @@ public class StudyUtils extends IntentService {
      * Random:
      * Repeat:
      * </p>
+     *
      * @param context
      * @param scheduleJson JSONObject representing the schedule
-     * @param esmsArray JSONArray representing the ESM questions
+     * @param esmsArray    JSONArray representing the ESM questions
      */
     private static void createEsmSchedule(Context context, JSONObject scheduleJson,
                                           JSONArray esmsArray) {
@@ -432,11 +437,11 @@ public class StudyUtils extends IntentService {
             switch (type) {
                 case "interval":
                     JSONArray days = scheduleJson.getJSONArray("days");
-                    for (int i = 0; i < days.length(); i ++) {
+                    for (int i = 0; i < days.length(); i++) {
                         schedule.addWeekday(days.getString(i));
                     }
                     JSONArray hours = scheduleJson.getJSONArray("hours");
-                    for (int i = 0; i < hours.length(); i ++) {
+                    for (int i = 0; i < hours.length(); i++) {
                         schedule.addHour(hours.getInt(i));
                     }
                     break;
@@ -460,7 +465,7 @@ public class StudyUtils extends IntentService {
             }
 
             // Set trigger for ESMs as the schedule's title
-            for (int i = 0; i < esmsArray.length(); i ++) {
+            for (int i = 0; i < esmsArray.length(); i++) {
                 esmsArray.getJSONObject(i).getJSONObject("esm").put(ESM_Question.esm_trigger, title);
             }
 
@@ -474,7 +479,6 @@ public class StudyUtils extends IntentService {
     }
 
     /**
-     *
      * @param context
      */
     public static void syncStudyConfig(Context context, Boolean toast) {
@@ -590,22 +594,37 @@ public class StudyUtils extends IntentService {
      * It needs to have the keys: "database", "sensors" and "study_info".
      *
      * @param context application context
-     * @param config JSON representing a study configuration
+     * @param config  JSON representing a study configuration
      * @return true if the study config is valid, false otherwise
      */
     public static boolean validateStudyConfig(Context context, JSONObject config, String input_password) {
-        for (String key: REQUIRED_STUDY_CONFIG_KEYS) {
+        for (String key : REQUIRED_STUDY_CONFIG_KEYS) {
             if (!config.has(key)) return false;
         }
 
-        // Test database connection
+//        // Test database connection
+//        try {
+//            JSONObject dbInfo = config.getJSONObject("database");
+//            return Jdbc.testConnection(dbInfo.getString("database_host"),
+//                    dbInfo.getString("database_port"), dbInfo.getString("database_name"),
+//                    dbInfo.getString("database_username"), dbInfo.getString("database_password"),
+//                    dbInfo.getBoolean("config_without_password"),
+//                    input_password);
+//        } catch (JSONException e) {
+//            return false;
+//        }
+
+        // Test Server connection
         try {
             JSONObject dbInfo = config.getJSONObject("database");
-            return Jdbc.testConnection(dbInfo.getString("database_host"),
-                    dbInfo.getString("database_port"), dbInfo.getString("database_name"),
-                    dbInfo.getString("database_username"), dbInfo.getString("database_password"),
-                    dbInfo.getBoolean("config_without_password"),
-                    input_password);
+            Log.i("server_url",dbInfo.getString("server_url") + "/" +
+                    dbInfo.getString("study_number") + "/" +
+                    dbInfo.getString("study_key"));
+            return Jdbc.testApiConnection(
+                    dbInfo.getString("server_url") + "/" +
+                            dbInfo.getString("study_number") + "/" +
+                            dbInfo.getString("study_key")
+            );
         } catch (JSONException e) {
             return false;
         }
